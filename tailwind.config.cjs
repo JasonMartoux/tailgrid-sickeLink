@@ -30,6 +30,7 @@ module.exports = {
       colors: {
         white: "#FFFFFF",
         black: "#212b36",
+        red: "#D6294C",
         "dark-700": "#090e34b3",
         dark: {
           DEFAULT: "#111928",
@@ -44,7 +45,7 @@ module.exports = {
         primary: "#315D96",
         "blue-dark": "#1B44C8",
         secondary: "#0A4E9A",
-        "body-color": "#637381",
+        "body-color": "#8899A8",
         "body-secondary": "#8899A8",
         warning: "#FBBF24",
         stroke: "#DFE4EA",
