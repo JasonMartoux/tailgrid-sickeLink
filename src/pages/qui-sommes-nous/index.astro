@@ -1,21 +1,20 @@
 ---
-import Team from '../../components/Team.astro';
 import Aboutsection from '../../components/Aboutsection.astro';
 import Breadcrumb from '../../components/layout/Breadcrumb.astro';
 import Layout from '../../layouts/Layout.astro';
 import CTAsection from '../../components/CTAsection.astro';
-
+import Blogsection from '../../components/Qui_sommes_nous/Blogsection.astro';
 ---
 
 <Layout
   description="SOS GLOBI PARIS (Association de lutte et de prévention contre les maladies du globule rouge : Drépanocytose et Thalassémie) est née le 12 janvier 2006."
-  title="Qui-sommes-nous ?"
+  title="Qui-sommes-noussss ?"
 >
   <Breadcrumb >
     <Fragment slot="title">Qui-sommes-nous ?</Fragment>
     <Fragment slot="subtitle">SOS GLOBI PARIS (Association de lutte et de prévention contre les maladies du globule rouge : Drépanocytose et Thalassémie) est née le 12 janvier 2006.</Fragment>
   </Breadcrumb>
+  <Blogsection />
   <Aboutsection />
   <CTAsection />
-  <Team />
 </Layout>

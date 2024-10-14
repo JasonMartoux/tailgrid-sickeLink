@@ -2,8 +2,9 @@
 import { getCollection } from "astro:content";
 
 // Filter blog entries with 'draft: false' & date before current date
-const publishedBlogEntries = await getCollection("blog", ({ data }) => {
-  return !data.draft && data.publishDate < new Date();
+const publishedBlogEntries = await getCollection("about", ({ data }) => {
+  console.log(data.publishDate)
+  return !data.draft ;
 });
 
 // Sort content entries by publication date
@@ -17,15 +18,11 @@ publishedBlogEntries.sort(function (a, b) {
     <div class="flex flex-wrap justify-center -mx-4">
       <div class="w-full px-4">
         <div class="mx-auto mb-[60px] max-w-[485px] text-center">
-          <span class="block mb-2 text-lg font-semibold text-primary">
-            Our Blogs
-          </span>
           <h2 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.2]">
-            Our Recent News
+            Dernières infos
           </h2>
           <p class="text-base text-body-color dark:text-dark-6">
-            There are many variations of passages of Lorem Ipsum available
-            but the majority have suffered alteration in some form.
+            Retrouvez-ici les dernières infos concernant l'association
           </p>
         </div>
       </div>
@@ -35,7 +32,7 @@ publishedBlogEntries.sort(function (a, b) {
       {
         publishedBlogEntries.slice(0, 3).map((blogPostEntry, index) => (
           <li class="w-full px-4 md:w-1/2 lg:w-1/3">
-            <a class="wow fadeInUp group block mb-10" data-wow-delay=".1s" href={`/blog/${blogPostEntry.slug}`}>
+            <a class="wow fadeInUp group block mb-10" data-wow-delay=".1s" href={`/qui-sommes-nous/${blogPostEntry.slug}`}>
               <div class="mb-8 overflow-hidden rounded-[5px]">
                 <span class="block">
                   <img
@@ -49,7 +46,7 @@ publishedBlogEntries.sort(function (a, b) {
                 <span
                   class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary"
                 >
-                  {blogPostEntry.data.publishDate.toDateString()}
+                  {blogPostEntry.data.publishDate}
                 </span>
                 <h3>
                   <span

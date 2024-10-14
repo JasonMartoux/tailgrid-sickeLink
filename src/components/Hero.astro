@@ -39,40 +39,38 @@
 
 <script src="assets/hero/finisher-header.es5.min.js" is:inline type="text/javascript"></script>
 <script type="text/javascript">
-    new FinisherHeader({
-      "count": 10,
-      "size": {
-        "min": 1300,
-        "max": 1500,
-        "pulse": 0
-      },
-      "speed": {
-        "x": {
-          "min": 0.1,
-          "max": 0.6
-        },
-        "y": {
-          "min": 0.1,
-          "max": 0.6
-        }
-      },
-      "colors": {
-        "background": "#ca0d68",
-        "particles": [
-          "#ff4848",
-          "#000000",
-          "#2235e5",
-          "#000000",
-          "#ff0000"
-        ]
-      },
-      "blending": "overlay",
-      "opacity": {
-        "center": 0.5,
-        "edge": 0.05
-      },
-      "shapes": [
-        "c"
+  new FinisherHeader({
+    "count": 12,
+  "size": {
+    "min": 1300,
+    "max": 1500,
+    "pulse": 0
+  },
+  "speed": {
+    "x": {
+      "min": 0.6,
+      "max": 3
+    },
+    "y": {
+      "min": 0.6,
+      "max": 3
+    }
+  },
+    "colors": {
+      "background": "#315D96",
+      "particles": [
+        "#db1f26",
+        "#0A4E9A"
       ]
-    });
-    </script>
+    },
+    "blending": "lighten",
+  "opacity": {
+    "center": 0.6,
+    "edge": 0
+  },
+  "skew": -2,
+  "shapes": [
+    "c"
+  ]
+});
+</script>
