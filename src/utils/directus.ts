@@ -3,6 +3,7 @@ import { createDirectus, rest, } from '@directus/sdk';
 type Global = {
   title: string;
   description: string;
+  email: string;
 }
 
 type Author = {
@@ -30,6 +31,6 @@ type Schema = {
   pages: Page[];
 }
 
-const directus = createDirectus<Schema>('http://localhost:8055/').with(rest());
+const directus = createDirectus<Schema>('https://back.mrtx.tech/').with(rest());
 
 export default directus;

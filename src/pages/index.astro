@@ -18,7 +18,11 @@ const global = await directus.request(readSingleton("global"));
   description={global.description}
 >
 
-  <Hero />
+  <Hero 
+  title={global.title}
+  description={global.description}
+  email={global.email}
+   />
   <Features />
   <Faq />
   <CTA />

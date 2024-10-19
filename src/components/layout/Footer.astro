@@ -4,32 +4,38 @@ import { getCollection } from "astro:content";
 
 <!-- ====== Footer Section Start -->
 <footer
-  class="wow fadeInUp relative z-10 bg-[#090E34] pt-15 lg:pt-[100px]"
+  class="wow fadeInUp relative z-10 bg-[#090E34] pt-10 lg:pt-[100px]"
   data-wow-delay=".15s"
 >
   <div class="container">
     <div class="-mx-4 flex flex-wrap">
-      <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-4/12 xl:w-8/12">
+      <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-8/12 xl:w-8/12">
+        <a
+        href="/"
+        class="mb-3 inline-block max-w-[160px]"
+      >
+        <img
+          src="/assets/logo/logo_sicke.png"
+          alt="logo"
+          class="max-w-[70px]"
+        />
+      </a>
         <div class="mb-10 w-full">
-          <a
-            href="/"
-            class="mb-6 inline-block max-w-[160px]"
-          >
-            <img
-              src="/assets/logo/logo_sicke.png"
-              alt="logo"
-              class="max-w-[70px]"
-            />
-          </a>
-          <p class="mb-8  text-base text-gray-7">
+
+          <p class="mb-8 text-base text-gray-7">
             La Drépanocytose et la Thalassémie sont des maladies génétiques héréditaires du globule rouge. Elles sont héréditairement transmissibles et les porteurs sains du gène n’étant pas malades s’ignorent très souvent. Le danger est alors pour leur descendance.
           </p>
         </div>
       </div>
-      <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-4/12 xl:w-4/12">
-        <div class="mb-10 w-full">
-          <h3 class="mb-8  text-gray-7"><span class="text-xl font-semibold">SICKeLINK by Sos Globi Paris </span><br /> Maison des associations 181, avenue Daumesnil - B.L. N°77 / 75012 Paris</h4>
-          <div class="-mx-3 flex items-center">
+      <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-4/12 xl:w-4/12 min-h-[250px]">
+
+        <div class="mx-3">
+          <svg width="22" height="22" class="text-red mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+          </svg>
+          <p class="text-gray-7">Maison des associations 181, avenue Daumesnil - B.L. N°77 / 75012 Paris</p>
+          <div class="flex items-start mt-5">
             <a href="javascript:void(0)" class="px-3 text-gray-7 hover:text-white">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="fill-current">
@@ -49,6 +55,7 @@ import { getCollection } from "astro:content";
               </svg>
             </a>
           </div>
+
         </div>
       </div>
     </div>

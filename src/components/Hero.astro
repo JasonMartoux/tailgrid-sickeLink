@@ -2,8 +2,11 @@
 interface Props {
   description: string;
   title: string;
+  email:string;
   image?: string;
 }
+
+const { description, title, email, image } = Astro.props;
 ---
 <!-- ====== Hero Section Start -->
 <section
@@ -16,7 +19,7 @@ interface Props {
     
         <img class="center mx-auto w-96 h-96" src="/assets/logo/logo_sicke.png" alt="image description">
 
-        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Association de patients, d’aidants, de familles en lien avec les maladies génétiques du globule rouge : Drépanocytose et Thalassémie</p>
+        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">{description}</p>
         <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
             <a href="/qui-sommes-nous" class="inline-block rounded-md bg-primary py-3 px-7 text-center text-base font-medium text-white transition hover:bg-blue-dark">
                 En savoir plus
@@ -25,7 +28,7 @@ interface Props {
         
     
     <div class="flex justify-evenly px-8 mt-20">
-        <div class="text-xl text-white">sickelink@gmail.com</div>
+        <div class="text-xl text-white">{email}</div>
         <div class="inline-flex rounded-md shadow-sm" role="group">
             <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-transparent border border-white rounded-s-lg hover:bg-white hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-white focus:bg-white focus:text-gray-900">
                 INSTAGRAM
@@ -44,7 +47,7 @@ interface Props {
 </section>
 <!-- ====== Hero Section End -->
 
-<script src="assets/hero/finisher-header.es5.min.js" is:inline type="text/javascript"></script>
+<script src="/assets/hero/finisher-header.es5.min.js" is:inline type="text/javascript"></script>
 <script type="text/javascript">
   new FinisherHeader({
     "count": 12,
