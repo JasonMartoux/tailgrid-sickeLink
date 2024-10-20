@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import directus from "../../utils/directus";
+import { readItems } from "@directus/sdk";
+
+// Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const categories = await directus.request(readItems("categories"));
+  return pages.map((page) => ({
+    params: { slug: page.slug },
+    props: page,
+  }));
+}
+
+
+// Get the entry directly from the prop on render
+const page = Astro.props;
+
+---
+
+<Layout title={page.title} description={page.postDetails.paraOne} >
+  <main>
+    <h1>{page.title}</h1>
+    <div set:html={page.content} />
+  </main>
+</Layout>

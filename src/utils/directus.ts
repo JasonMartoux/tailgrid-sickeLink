@@ -16,18 +16,26 @@ type Page = {
   slug: string;
 }
 
-type Post = {
+type Article = {
   image: string;
   title: string;
   author: Author;
+  category: Category;
   content: string;
   published_date: string
   slug: string;
 }
 
+type Category = {
+  title: string;
+  slug: string;
+  posts: Article[];
+}
+
 type Schema = {
-  posts: Post[];
+  article: Article[];
   global: Global;
+  categories: Category[];
   pages: Page[];
 }
 
