@@ -6,11 +6,7 @@ import { readItems } from "@directus/sdk";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const categories = await directus.request(readItems("categories"));
-  return pages.map((page) => ({
-    params: { slug: page.slug },
-    props: page,
-  }));
+    return [];
 }
 
 
@@ -19,7 +15,7 @@ const page = Astro.props;
 
 ---
 
-<Layout title={page.title} description={page.postDetails.paraOne} >
+<Layout title={page.title} description={page.postDetails.paraOne} image={entry.data.bigImg.src}>
   <main>
     <h1>{page.title}</h1>
     <div set:html={page.content} />
