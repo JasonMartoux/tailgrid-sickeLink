@@ -1,5 +1,8 @@
 ---
 import { getCollection } from "astro:content";
+
+const  currentYear = new Date().getFullYear();
+
 ---
 
 <!-- ====== Footer Section Start -->
@@ -69,14 +72,14 @@ import { getCollection } from "astro:content";
             <div
               class="-mx-3 flex items-center justify-center md:justify-start"
             >
-            <span class="px-3 text-base text-gray-7 ">Copyright © 2024 SickeLink by Sos Globi. Tous droits réservés.</span>
+            <span class="px-3 text-base text-gray-7 ">Copyright © {currentYear} SickeLink by Sos Globi. Tous droits réservés.</span>
             </div>
           </div>
         </div>
         <div class="w-full px-4 md:w-1/3 lg:w-1/2">
           <div class="my-1 flex justify-center md:justify-end">
             <p class="text-base text-gray-7">
-              Design & Dev avec par 
+              Design & Dev par 
               <a
                 href="#"
                 rel="nofollow noopner"
