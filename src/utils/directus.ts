@@ -1,43 +1,30 @@
-import { createDirectus, rest, } from '@directus/sdk';
+import { createDirectus, rest } from '@directus/sdk';
 
 type Global = {
   title: string;
   description: string;
   email: string;
-}
-
-type Author = {
-  name: string
-}
+};
 
 type Page = {
   title: string;
   content: string;
-  slug: string;
-}
-
-type Article = {
-  image: string;
-  title: string;
-  author: Author;
-  category: Category;
-  content: string;
-  published_date: string
-  slug: string;
-}
+  mainImg: string;
+  sideImg: string;
+  Category: Category;
+};
 
 type Category = {
   title: string;
-  slug: string;
-  posts: Article[];
-}
+  description: string;
+  pages: Page[];
+};
 
 type Schema = {
-  article: Article[];
   global: Global;
-  categories: Category[];
-  pages: Page[];
-}
+  Categories: Category[];
+  Pages: Page[];
+};
 
 const directus = createDirectus<Schema>('https://back.mrtx.tech/').with(rest());
 

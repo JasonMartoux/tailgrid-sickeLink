@@ -1,23 +1,86 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import directus from "../../utils/directus";
+import {createSlug} from "../../utils/all";
 import { readItems } from "@directus/sdk";
+import Breadcrumb from '../../components/layout/Breadcrumb.astro';
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
-    return [];
+  await directus.request(readItems("Categories"));
+    const categories = await directus.request(readItems('Categories', {
+      fields: ['*', { pages: ['*']}]
+    }));
+  
+        return categories.map((category) => ({
+          params: { slug: createSlug(category.title) },
+          props: {
+            category
+          }
+        }));  
+
 }
-
-
-// Get the entry directly from the prop on render
-const page = Astro.props;
-
+const { category } = Astro.props;
 ---
 
-<Layout title={page.title} description={page.postDetails.paraOne} image={entry.data.bigImg.src}>
-  <main>
-    <h1>{page.title}</h1>
-    <div set:html={page.content} />
-  </main>
+<Layout title={category.title} description={category.description} >
+  <!-- ====== Blog Details Section Start -->
+  <section class="pt-20 pb-10 lg:pb-20 dark:bg-dark">
+    <div class="container">
+      <Breadcrumb >
+        <Fragment slot="title">{category.title}</Fragment>
+        
+        <!-- <Fragment slot="subtitle">SOS GLOBI PARIS (Association de lutte et de prévention contre les maladies du globule rouge : Drépanocytose et Thalassémie) est née le 12 janvier 2006.</Fragment> -->
+      </Breadcrumb>
+      
+      <section class="pt-5  bg-white dark:bg-dark">
+        <div class="container">
+          <div class="flex flex-wrap justify-center">
+            <div class="w-full px-4">
+              <div class="mx-auto mb-[60px] max-w-[485px] text-center">
+                <p class="text-base text-body-color dark:text-dark-6">
+                  {category.description}
+                </p>
+              </div>
+            </div>
+          </div>
+      
+          <ul class="-mx-4 flex flex-wrap">
+            
+{
+        category.pages.slice(0, 3).map((page, index) => (
+        <li class="w-full px-4 md:w-1/2 lg:w-1/3 shadow-lg dark:bg-dark-2">
+            { <a class="wow fadeInUp group block mb-10" data-wow-delay=".1s" href={`/categories/page/${createSlug(page.title)}`}>
+              <div class="mb-8 overflow-hidden rounded-[5px]">
+                <span class="block">
+                  <img
+                    src={`https://back.mrtx.tech/assets/${page.mainImg}?width=500&format=jpg`}
+                    class="w-300 ease-in duration-300 group-hover:rotate-6 group-hover:scale-125"
+                  />
+                </span>
+              </div>
+              <div>
+                <h3>
+                  <span
+                    class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl"
+                  >
+                    {page.title}
+                  </span>
+                </h3>
+                <span class="max-w-[370px] mb-8 text-body-color dark:text-dark-6 lg:mb-9" set:html={page.content.slice(0, 150)}>
+                  
+                </span>
+              </div>
+            </a> 
+            }
+          </li>
+        ))
+      
+            }
+          </ul>
+        </div>
+      </section>
+    </div>
+  </section>
+  <!-- ====== Blog Details Section End -->
 </Layout>

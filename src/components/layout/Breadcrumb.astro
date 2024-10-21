@@ -16,7 +16,7 @@
             <slot name="title">Title</slot>
           </h1>
           <p class="mb-5 text-base text-body-color dark:text-dark-6">
-            <slot name="subtitle">subtitle</slot>
+            <slot name="subtitle"></slot>
           </p>
 
           <ul class="flex items-center justify-center gap-[10px]">
@@ -31,6 +31,13 @@
                 class="flex items-center gap-[10px] text-base font-medium text-body-color dark:text-dark-6">
                 <span class="text-body-color dark:text-dark-6"> / </span>
                 <slot name="title">Title</slot>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)"
+                class="flex items-center gap-[10px] text-base font-medium text-body-color dark:text-dark-6">
+                <span class="text-body-color dark:text-dark-6"> / </span>
+                <slot name="sub"></slot>
               </a>
             </li>
           </ul>

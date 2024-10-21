@@ -1,0 +1,59 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { createSlug } from "../../utils/all";
+import directus from "../../utils/directus";
+import { readItems } from "@directus/sdk";
+import Breadcrumb from '../../components/layout/Breadcrumb.astro';
+
+const categories = await directus.request(readItems("Categories"));
+---
+
+<Layout
+  description=""
+  title="Liste des Catégories présentes sur le site"
+>
+  <Breadcrumb >
+    <Fragment slot="title">Catégories</Fragment>
+    <!-- <Fragment slot="subtitle">SOS GLOBI PARIS (Association de lutte et de prévention contre les maladies du globule rouge : Drépanocytose et Thalassémie) est née le 12 janvier 2006.</Fragment> -->
+  </Breadcrumb>
+  <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-dark">
+    <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap justify-center">
+      <ul class="-mx-4 flex flex-wrap">
+        
+          {categories.map((category, index) => 
+          (
+          <div class="w-full px-4 md:w-1/2 xl:w-1/3">
+            <div
+               class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3"
+               >
+               <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                  <h3>
+                     <a
+                        href={`/categories/${createSlug(category.title)}`}
+                        class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
+                        >
+                     {category.title}
+                     </a>
+                  </h3>
+                  <p
+                     class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7"
+                     >
+                     {category.description}
+                  </p>
+                  <a
+                     href={`/categories/${createSlug(category.title)}`}
+                     class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6"
+                     >
+                  View Details
+                  </a>
+               </div>
+            </div>
+        </div>
+        ))}
+        
+      </ul>
+    </div>
+    </div>
+  </section>
+</Layout>
