@@ -21,10 +21,9 @@ export async function getStaticPaths() {
 
 }
 const { page } = Astro.props;
-console.log(page)
 ---
 
-<Layout title={page.title} image={`https://back.mrtx.tech/assets/${page.mainImg}?format=jpg`}>
+<Layout title={page.title} image={`https://back.mrtx.tech/assets/${page.mainImg}?format=jpg`} description="">
   <!-- ====== Blog Details Section Start -->
   <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-dark">
     <div class="container">
@@ -56,7 +55,7 @@ console.log(page)
           </div>
           <div class="-mx-4 flex flex-wrap">
             <div class="w-full px-4 lg:w-8/12">
-              <div set:html={page.content}>
+              <div class="prose" set:html={page.content}>
                 <!-- <h1
                   class="wow fadeInUp mb-8 text-2xl font-bold text-dark dark:text-white sm:text-3xl md:text-[35px] md:leading-[1.28]"
                   data-wow-delay=".1s"
