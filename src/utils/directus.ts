@@ -26,6 +26,6 @@ type Schema = {
   Pages: Page[];
 };
 
-const directus = createDirectus<Schema>('https://back.mrtx.tech/').with(rest());
+const directus = createDirectus<Schema>('https://admin.sickelink.com/').with(rest());
 
 export default directus;
