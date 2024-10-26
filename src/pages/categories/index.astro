@@ -4,6 +4,7 @@ import { createSlug } from "../../utils/all";
 import directus from "../../utils/directus";
 import { readItems } from "@directus/sdk";
 import Breadcrumb from '../../components/layout/Breadcrumb.astro';
+export const prerender = true;
 
 const categories = await directus.request(readItems("Categories"));
 ---
