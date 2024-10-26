@@ -37,24 +37,10 @@ const { page } = Astro.props;
               src=`https://admin.sickelink.com/assets/${page.mainImg}?format=jpg`
               class="h-full w-full object-cover object-center"
             />
-            <div
-              class="absolute top-0 left-0 z-10 flex h-full w-full items-end bg-gradient-to-t from-dark-700 to-transparent"
-            >
-              <div class="flex flex-wrap items-center p-4 pb-4 sm:px-8">
-                <div class="mb-4 mr-5 flex items-center md:mr-10">
-                  <div class="mr-4 h-10 w-10 overflow-hidden rounded-full">
-                    <img
-                      src=`https://admin.sickelink.com/assets/${page.mainImg}?format=jpg`
-                      alt={page.title}
-                      class="w-full"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+ 
           </div>
           <div class="-mx-4 flex flex-wrap">
-            <div class="w-full px-4 lg:w-8/12">
+            <div class="w-full px-4 lg:w-7/12">
               <div class="prose" set:html={page.content}>
                 <!-- <h1
                   class="wow fadeInUp mb-8 text-2xl font-bold text-dark dark:text-white sm:text-3xl md:text-[35px] md:leading-[1.28]"
@@ -226,15 +212,14 @@ const { page } = Astro.props;
                 </div> -->
               </div>
             </div>
-            <div class="w-full px-4 lg:w-4/12">
+            <div class="w-full px-4 lg:w-5/12">
               <div>
-
                 <div
                   class="wow fadeInUp mb-12 overflow-hidden rounded-[5px]"
                   data-wow-delay=".1s"
                 >
                   <img
-                    src="/assets/blog/bannder-ad.png"
+                    src=`https://admin.sickelink.com/assets/${page.sideImg}?format=jpg`
                     alt="image"
                     class="w-full"
                   />
