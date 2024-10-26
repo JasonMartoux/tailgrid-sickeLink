@@ -1,14 +1,15 @@
 ---
-const menuitems = [
-  {
-    title: "L'association",
-    path: "/categories/lassociation",
-  },
-  {
-    title: "Je m'informe",
-    path: "/categories/jeminforme",
-  },
-];
+import directus from "../../utils/directus";
+import {createSlug} from "../../utils/all";
+import { readItems } from "@directus/sdk";
+
+const categories = await directus.request(readItems("Categories"));
+console.log(categories)
+
+const menuitems = categories.map((item, index) => {
+  return {title: item.title, path: `/categories/${createSlug(item.title)}` }
+  }
+);
 ---
 
 <header class="ud-header absolute top-0 left-0 z-40 flex w-full items-center bg-transparent">
