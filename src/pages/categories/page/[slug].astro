@@ -21,6 +21,7 @@ export async function getStaticPaths() {
 
 }
 const { page } = Astro.props;
+
 ---
 
 <Layout title={page.title} image={`https://admin.sickelink.com/assets/${page.mainImg}?format=jpg`} description="">
@@ -220,7 +221,7 @@ const { page } = Astro.props;
                 >
                   <img
                     src=`https://admin.sickelink.com/assets/${page.sideImg}?format=jpg`
-                    alt="image"
+                    alt=`${page.title}`
                     class="w-full"
                   />
                 </div>
