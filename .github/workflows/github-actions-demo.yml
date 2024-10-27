@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '*/5 * * * *' # Adjust this to the frequency you need
+    - cron: '0 9-17 * * *' # Adjust this to the frequency you need
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
