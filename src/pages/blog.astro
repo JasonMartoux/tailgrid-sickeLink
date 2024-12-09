@@ -4,15 +4,39 @@ import Breadcrumb from '../components/layout/Breadcrumb.astro';
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from "astro:content";
 
-// Filter blog entries with 'draft: false' & date before current date
-const publishedBlogEntries = await getCollection("blog", ({ data }) => {
-  return !data.draft && data.publishDate < new Date();
-});
+// Articles de repli en cas d'erreur
+const fallbackBlogEntries = [
+  {
+    slug: "article-par-defaut",
+    data: {
+      title: "Article par défaut",
+      draft: false,
+      publishDate: new Date(),
+      postDetails: {
+        paraOne: "Cet article est affiché quand les données ne peuvent pas être chargées."
+      },
+      image: { src: "/assets/blog/default-blog.jpg" },
+      author: "Auteur par défaut",
+      readingTime: "5 min"
+    }
+  }
+];
 
-// Sort content entries by publication date
-publishedBlogEntries.sort(function (a, b) {
-  return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
-});
+let publishedBlogEntries = [];
+try {
+  // Filter blog entries with 'draft: false' & date before current date
+  publishedBlogEntries = await getCollection("blog", ({ data }) => {
+    return !data.draft && data.publishDate < new Date();
+  });
+
+  // Sort content entries by publication date
+  publishedBlogEntries.sort(function (a, b) {
+    return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
+  });
+} catch (error) {
+  console.error("Erreur lors de la récupération des articles du blog:", error);
+  publishedBlogEntries = fallbackBlogEntries;
+}
 ---
 
 <Layout
