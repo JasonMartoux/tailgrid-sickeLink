@@ -3,12 +3,27 @@ import directus from "../../utils/directus";
 import {createSlug} from "../../utils/all";
 import { readItems } from "@directus/sdk";
 
-const categories = await directus.request(readItems("Categories"));
+// Données de repli en cas d'échec de connexion à Directus
+const fallbackCategories = [
+  { title: "Services", path: "/services" },
 
-const menuitems = categories.map((item, index) => {
-  return {title: item.title, path: `/categories/${createSlug(item.title)}` }
+];
+
+let categories = [];
+try {
+  categories = await directus.request(readItems("Categories"));
+} catch (error) {
+  console.error("Erreur lors de la récupération des catégories depuis Directus:", error);
+  categories = fallbackCategories;
+}
+
+const menuitems = categories.map((item) => {
+  return {
+    title: item.title, 
+    path: item.path || `/categories/${createSlug(item.title)}`
   }
-);
+});
+
 ---
 
 <header class="ud-header absolute top-0 left-0 z-40 flex w-full items-center bg-transparent">
