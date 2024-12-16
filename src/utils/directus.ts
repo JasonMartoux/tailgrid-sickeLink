@@ -26,6 +26,13 @@ type Schema = {
   Pages: Page[];
 };
 
-const directus = createDirectus<Schema>('https://admin.sickelink.com/').with(rest());
+const directus = createDirectus<Schema>('https://admin.sickelink.com/')
+  .with(rest({
+    onRequest: (options) => {
+      // Add timeout of 5 seconds
+      options.signal = AbortSignal.timeout(5000);
+      return options;
+    }
+  }));
 
 export default directus;

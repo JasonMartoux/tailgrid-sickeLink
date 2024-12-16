@@ -12,7 +12,6 @@ const fallbackCategories = [
 let categories = [];
 try {
   categories = await directus.request(readItems("Categories"));
-  console.log(categories);
 } catch (error) {
   console.error("Erreur lors de la récupération des catégories depuis Directus:", error);
   categories = fallbackCategories;

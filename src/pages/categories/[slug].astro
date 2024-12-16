@@ -4,14 +4,7 @@ import directus from "../../utils/directus";
 import {createSlug} from "../../utils/all";
 import { readItems } from "@directus/sdk";
 import Breadcrumb from '../../components/layout/Breadcrumb.astro';
-
-const fallbackCategories = [
-  {
-    title: "Services",
-    description: "Nos services par défaut",
-    pages: []
-  }
-];
+import { fallbackCategories } from "../../utils/fallbacks";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -19,14 +12,20 @@ export async function getStaticPaths() {
     const categories = await directus.request(readItems('Categories', {
       fields: ['*', { pages: ['*']}]
     }));
+
+    if (!categories || categories.length === 0) {
+      return fallbackCategories.map((category) => ({
+        params: { slug: createSlug(category.title) },
+        props: { category }
+      }));
+    }
+
     return categories.map((category) => ({
       params: { slug: createSlug(category.title) },
-      props: {
-        category
-      }
+      props: { category }
     }));
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching categories:', error);
     return fallbackCategories.map((category) => ({
       params: { slug: createSlug(category.title) },
       props: { category }

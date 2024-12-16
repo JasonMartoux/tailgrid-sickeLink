@@ -4,6 +4,7 @@ import directus from "../../../utils/directus";
 import {createSlug} from "../../../utils/all";
 import { readItems } from "@directus/sdk";
 import Breadcrumb from '../../../components/layout/Breadcrumb.astro';
+import { fallbackPages } from "../../../utils/fallbacks";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -11,17 +12,10 @@ export async function getStaticPaths() {
     const pages = await directus.request(readItems('Pages'));
     
     if (!pages || pages.length === 0) {
-      // Fallback if no pages found
-      return [{
-        params: { slug: 'services' },
-        props: { 
-          page: {
-            title: "Services",
-            mainImg: "default.jpg",
-            content: "<h1>Nos Services</h1><p>Contenu par défaut des services.</p>"
-          }
-        }
-      }];
+      return fallbackPages.map((page) => ({
+        params: { slug: createSlug(page.title) },
+        props: { page }
+      }));
     }
 
     return pages.map((page) => ({
@@ -30,17 +24,10 @@ export async function getStaticPaths() {
     }));
   } catch (error) {
     console.error('Error fetching pages:', error);
-    // Return fallback on error
-    return [{
-      params: { slug: 'services' },
-      props: { 
-        page: {
-          title: "Services",
-          mainImg: "default.jpg",
-          content: "<h1>Nos Services</h1><p>Contenu par défaut des services.</p>"
-        }
-      }
-    }];
+    return fallbackPages.map((page) => ({
+      params: { slug: createSlug(page.title) },
+      props: { page }
+    }));
   }
 }
 
