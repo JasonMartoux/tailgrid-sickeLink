@@ -4,39 +4,39 @@ import directus from "../../utils/directus";
 import {createSlug} from "../../utils/all";
 import { readItems } from "@directus/sdk";
 import Breadcrumb from '../../components/layout/Breadcrumb.astro';
-import { fallbackCategories } from "../../utils/fallbacks";
+import { fallbackCategories, defaultImages } from "../../utils/fallbacks";
+import { fetchWithFallback } from "../../utils/directus";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
-  try {
-    const categories = await directus.request(readItems('Categories', {
+  const categories = await fetchWithFallback(
+    directus.request(readItems('Categories', {
       fields: ['*', { pages: ['*']}]
-    }));
+    })),
+    fallbackCategories
+  );
 
-    if (!categories || categories.length === 0) {
-      return fallbackCategories.map((category) => ({
-        params: { slug: createSlug(category.title) },
-        props: { category }
-      }));
-    }
-
-    return categories.map((category) => ({
-      params: { slug: createSlug(category.title) },
-      props: { category }
-    }));
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-    return fallbackCategories.map((category) => ({
-      params: { slug: createSlug(category.title) },
-      props: { category }
-    }));
-  }
+  return categories.map((category) => ({
+    params: { slug: createSlug(category.title) },
+    props: { category }
+  }));
 }
 
 const { category } = Astro.props;
+
+const getImageUrl = (imagePath?: string) => {
+  if (!imagePath) return `https://placehold.co/500x500`;
+  
+  try {
+    if (imagePath.startsWith('http')) return imagePath;
+    return `https://admin.sickelink.com/assets/${imagePath}?width=500&format=jpg`;
+  } catch (error) {
+    return `https://placehold.co/500x500`;
+  }
+};
 ---
 
-<Layout title={category.title} description={category.description} >
+<Layout title={category.title} description={category.description}>
   <!-- ====== Blog Details Section Start -->
   <section class="pt-20 pb-10 lg:pb-20 dark:bg-dark">
     <div class="container">
@@ -66,10 +66,11 @@ const { category } = Astro.props;
             { <a class="wow fadeInUp group block mb-10" data-wow-delay=".1s" href={`/categories/page/${createSlug(page.title)}`}>
               <div class="mb-8 overflow-hidden rounded-[5px]">
                 <span class="block">
-                  {/* <img
-                    src={`https://admin.sickelink.com/assets/${page.mainImg}?width=500&format=jpg`}
+                  <img
+                    src={getImageUrl(page.mainImg)}
+                    alt={page.title}
                     class="w-300 ease-in duration-300 group-hover:rotate-6 group-hover:scale-125"
-                  /> */}
+                  />
                 </span>
               </div>
               <div>
