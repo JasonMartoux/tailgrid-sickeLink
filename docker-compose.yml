@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/dist
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:4321"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
