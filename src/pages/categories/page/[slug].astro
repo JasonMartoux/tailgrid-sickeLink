@@ -35,7 +35,7 @@ const { page } = Astro.props;
 
 ---
 
-<Layout title={page.title} image={`https://admin.sickelink.com/assets/${page.mainImg}?format=jpg`} description="">
+<Layout title={page.title} description="">
   <!-- ====== Blog Details Section Start -->
   <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-dark">
     <div class="container">
@@ -45,10 +45,10 @@ const { page } = Astro.props;
             class="wow fadeInUp relative z-20 mb-[50px] h-[300px] overflow-hidden rounded-[5px] md:h-[400px] lg:h-[500px]"
             data-wow-delay=".1s"
           >
-            <img
+            <!-- <img
               src=`https://admin.sickelink.com/assets/${page.mainImg}?format=jpg`
               class="h-full w-full object-cover object-center"
-            />
+            /> -->
  
           </div>
           <div class="-mx-4 flex flex-wrap">
@@ -230,11 +230,11 @@ const { page } = Astro.props;
                   class="wow fadeInUp mb-12 overflow-hidden rounded-[5px]"
                   data-wow-delay=".1s"
                 >
-                  <img
+                  <!-- <img
                     src=`https://admin.sickelink.com/assets/${page.sideImg}?format=jpg`
                     alt=`${page.title}`
                     class="w-full"
-                  />
+                  /> -->
                 </div>
               </div>
             </div>
