@@ -12,6 +12,7 @@ const fallbackCategories = [
 let categories = [];
 try {
   categories = await directus.request(readItems("Categories"));
+  console.log(categories);
 } catch (error) {
   console.error("Erreur lors de la récupération des catégories depuis Directus:", error);
   categories = fallbackCategories;
@@ -107,7 +108,7 @@ const menuitems = categories.map((item) => {
                                 href={item.path}
                                 class="block rounded py-[10px] px-4 text-sm text-body-color dark:text-dark-6 hover:text-primary dark:hover:text-primary"
                               >
-                                {item.title}
+                                {item.title} ----
                               </a>
                             ))
                           }
